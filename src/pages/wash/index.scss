@@ -1,7 +1,58 @@
-.home {
+.wash {
+  position: relative;
   height: 100%;
-  // width: 192px;
+  width: 100%;
   padding: 0;
   margin: 0;
-  // background-color: red;
+  display: flex;
+  align-items: center;
+
+  &-left {
+    width: 50%;
+    height: 100%;
+    // background-color: blue;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &-btnBox {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    
+  }
+
+  &-right {
+    width: 50%;
+    height: 100%;
+    // background-color: blue;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+
+  &-loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    opacity: 0.65;
+  }
+
+  &-list{
+
+    &-row {
+      margin: 24px;
+    }
+  }
+
+  
 }

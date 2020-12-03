@@ -1,15 +1,17 @@
-const { 
+const {
   app,
   BrowserWindow,
   Menu,
 
 } = require('electron')
+const path = require('path')
+
 let win
 function createWindow() {
   // 创建浏览器窗口。
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 960,
+    height: 680,
     webPreferences: {
       nodeIntegration: true
     }
@@ -32,6 +34,7 @@ function createWindow() {
     win = null
   })
 }
+
 
 // Electron 会在初始化后并准备
 // 创建浏览器窗口时，调用这个函数。
@@ -57,5 +60,25 @@ app.on('activate', () => {
 
 Menu.setApplicationMenu(null)
 
-// 在这个文件中，你可以续写应用剩下主进程代码。
-// 也可以拆分成几个文件，然后用 require 导入。
+
+
+// py进程
+
+let pyProc = null
+const pyPort = '4242'
+
+const createPyProc = () => {
+  const script = path.join(__dirname, 'py', 'api.py')
+  pyProc = require('child_process').spawn('python', [script, pyPort])
+  if (pyProc != null) {
+    console.log('python process started successfully')
+  }
+}
+
+const exitPyProc = () => {
+  pyProc.kill()
+  pyProc = null
+}
+
+app.on('ready', createPyProc)
+app.on('will-quit', exitPyProc)
