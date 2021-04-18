@@ -6,6 +6,7 @@ import json
 
 from spider.jing_dong import jingDongSpider
 from fenci.fenci import handleList
+from emotion.index import analyzeEmotion
  
 
 app = Flask(__name__)
@@ -31,6 +32,20 @@ def fenci():
     return {
         'success': True,
         'data': seg_data,
+    }
+
+# 分词处理
+@app.route("/emotion", methods=['POST'])
+@cross_origin()
+def emotion():
+    print(request)
+    data = request.get_data()
+    data = json.loads(data.decode('utf-8'))
+    data.setdefault('comment', '')
+    res = analyzeEmotion(data['comment'])
+    return {
+        'success': True,
+        'data': res,
     }
  
 if __name__ == "__main__":

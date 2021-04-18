@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import echarts from "echarts";
 import 'echarts-wordcloud'
 
@@ -6,11 +6,12 @@ import { AppContext } from '../../../../../index'
 
 export default () => {
   const context = useContext(AppContext)
+  const { segComments } = context
 
   useEffect(() => {
     const counter = {}
-    for (const segComments of context.segComments) {
-      for (const word of segComments) {
+    for (const segComment of segComments) {
+      for (const word of segComment) {
         if (word && !counter[word]) {
           counter[word] = 1
         }
@@ -67,7 +68,7 @@ export default () => {
         }
       ]
     })
-  }, [context])
+  }, [segComments])
 
 
   return (

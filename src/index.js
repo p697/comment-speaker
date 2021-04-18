@@ -12,8 +12,10 @@ import HomePage from './pages/home/index'
 import SpiderPage from './pages/spider/index'
 import WashPage from './pages/wash/index'
 import AnalyzeFrequencyPage from './pages/analyze/frequency'
+import AnalyzeEmotionyPage from './pages/analyze/emotion'
 import ResultPage from './pages/result/index'
-import MonitorPage from './pages/monitor/index'
+
+import mock_comments from './assest/mock_comments'
 
 // 爬到的评论 - 全局使用，下同
 export const AppContext = React.createContext([]);
@@ -21,8 +23,9 @@ export const AppContext = React.createContext([]);
 
 
 const App = () => {
-  const [comments, setComments] = React.useState([])
+  const [comments, setComments] = React.useState(mock_comments)
   const [segComments, setSegComments] = React.useState([])
+  const [emotionData, setEmotionData] = React.useState([])
 
   return (
     <AppContext.Provider
@@ -31,6 +34,8 @@ const App = () => {
         setComments,
         segComments,
         setSegComments,
+        emotionData,
+        setEmotionData,
       }}
     >
       <Router>
@@ -46,6 +51,8 @@ const App = () => {
               <Route path="/wash" component={WashPage} />
 
               <Route path="/analyze/frequency" component={AnalyzeFrequencyPage} />
+
+              <Route path="/analyze/emotion" component={AnalyzeEmotionyPage} />
 
               <Route path="/result" component={ResultPage} />
 

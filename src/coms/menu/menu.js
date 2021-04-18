@@ -3,9 +3,9 @@ import { Menu } from 'antd';
 import {
   ClearOutlined,
   BugOutlined,
-  ExperimentOutlined,
-  DashboardOutlined,
-  FileSearchOutlined,
+  // ExperimentOutlined,
+  // DashboardOutlined,
+  // FileSearchOutlined,
   RightCircleOutlined,
   LeftCircleOutlined
 } from '@ant-design/icons';
@@ -81,13 +81,13 @@ export default () => {
           <Menu.Item key="5"><Link to="/analyze/emotion">情感分析</Link></Menu.Item>
         </SubMenu>
 
-        <Menu.Item key="sub4">
+        {/* <Menu.Item key="sub4">
           <Link to="/result"></Link>
           <span>
             <FileSearchOutlined />
             <span>分析结果</span>
           </span>
-        </Menu.Item>
+        </Menu.Item> */}
 
       </Menu>
       <div className="menubox-trigger" onClick={() => trigger()}>
